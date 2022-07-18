@@ -1,0 +1,33 @@
+input CustomerSignUpInput {
+    name: String!
+    surname: String!
+    email: String!
+    password: String!
+}
+
+input CustomerSignInInput {
+    email: String!
+    password: String!
+}
+
+type PublicCustomer {
+    name: String!
+    surname: String!
+    email: String!
+}
+
+type SignInResponse {
+    isSuccess: Boolean!
+    customer: PublicCustomer
+}
+
+type Mutation {
+    signUp(input: CustomerSignUpInput!): PublicCustomer!
+    signIn(input: CustomerSignInInput!): SignInResponse!
+    signOut: Boolean!
+    refreshAccessToken: Boolean!
+}
+
+type Query {
+    isSignedIn: Boolean!
+}

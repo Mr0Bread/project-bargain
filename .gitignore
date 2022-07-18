@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+dist
 
 # dependencies
 node_modules
@@ -37,3 +38,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.env
+certs
+
+# Service specific
+/apps/customer-service/src/prisma/generated

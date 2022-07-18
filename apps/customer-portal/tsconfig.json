@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "Forms/*": ["src/forms/*"],
+      "Layouts/*": ["src/layouts/*"],
+      "Hooks/*": ["src/hooks/*"],
+      "Components/*": ["src/components/*"],
+      "Hooks": ["src/hooks"],
+      "Theme": ["src/theme"],
+      "Store": ["src/store"],
+      "Store/*": ["src/store/*"],
+      "Utils/*": ["src/utils/*"],
+      "Types/*": ["src/types/*"],
+      "GraphQl/*": ["src/graphql/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
+  "exclude": ["node_modules", "jest.config.ts"]
+}

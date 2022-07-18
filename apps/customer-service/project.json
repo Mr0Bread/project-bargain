@@ -1,0 +1,77 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/customer-service/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/customer-service",
+        "main": "apps/customer-service/src/main.ts",
+        "tsConfig": "apps/customer-service/tsconfig.app.json",
+        "assets": [
+          "apps/customer-service/src/assets",
+          {
+            "input": "apps/customer-service/src/modules",
+            "glob": "**/*.graphql",
+            "output": "/"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/customer-service/src/environments/environment.ts",
+              "with": "apps/customer-service/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "customer-service:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/customer-service/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/customer-service"],
+      "options": {
+        "jestConfig": "apps/customer-service/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "generate-client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn prisma generate --schema=./apps/customer-service/schema.prisma"
+      }
+    },
+    "generate-typings": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node ./apps/customer-service/generate-typings"
+      }
+    },
+    "migrate-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn prisma migrate dev --schema=./apps/customer-service/schema.prisma"
+      }
+    }
+  },
+  "tags": []
+}
