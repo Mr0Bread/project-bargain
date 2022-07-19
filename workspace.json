@@ -6,6 +6,7 @@
     "customer-portal": "apps/customer-portal",
     "customer-portal-e2e": "apps/customer-portal-e2e",
     "customer-service": "apps/customer-service",
-    "gateway": "apps/gateway"
+    "gateway": "apps/gateway",
+    "mailer": "apps/mailer"
   }
 }
