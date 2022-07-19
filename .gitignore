@@ -42,4 +42,4 @@ Thumbs.db
 certs
 
 # Service specific
-/apps/customer-service/src/prisma/generated
+/apps/*/src/prisma/generated
