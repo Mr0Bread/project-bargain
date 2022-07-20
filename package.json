@@ -71,6 +71,7 @@
     "@nrwl/next": "14.4.0",
     "@prisma/client": "^4.0.0",
     "@reduxjs/toolkit": "^1.8.2",
+    "@trpc/server": "^9.26.2",
     "apollo-server-express": "^3.10.0",
     "cookie-parser": "^1.4.6",
     "core-js": "^3.6.5",
@@ -91,6 +92,7 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
     "tslib": "^2.3.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zod": "^3.17.9"
   }
 }
