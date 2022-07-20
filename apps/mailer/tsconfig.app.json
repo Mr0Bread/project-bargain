@@ -11,7 +11,8 @@
       "@modules/*": [
         "src/modules/*"
       ],
-    }
+    },
+    "strict": true
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]

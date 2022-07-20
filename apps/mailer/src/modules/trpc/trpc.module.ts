@@ -2,6 +2,7 @@ import { DynamicModule, Inject, MiddlewareConsumer, Module, NestModule, Type } f
 import { createTrpcExpressMiddleware } from "../../trpc";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { ITrpcRouter } from "./interfaces/trpc-router.interface";
+import { MailerModule } from "@modules/mailer/mailer.module";
 
 export type TrpcModuleOptions = {
   trpcPath: string;
@@ -9,7 +10,9 @@ export type TrpcModuleOptions = {
   createContext: (options: trpcExpress.CreateExpressContextOptions) => Record<string, unknown>
 }
 
-@Module({})
+@Module({
+  imports: [MailerModule],
+})
 export class TrpcModule implements NestModule {
   private readonly options: TrpcModuleOptions;
   private readonly trpcRouter: ITrpcRouter;
