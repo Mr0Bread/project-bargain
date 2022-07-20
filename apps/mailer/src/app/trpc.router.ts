@@ -43,6 +43,8 @@ export class TrpcRouter implements ITrpcRouter {
             cc,
             bcc,
             html,
+            context,
+            template,
           } = input;
 
           await this.mailerService.sendEmail({
@@ -52,6 +54,8 @@ export class TrpcRouter implements ITrpcRouter {
             cc: cc?.join(', '),
             bcc: bcc?.join(', '),
             html: html || undefined,
+            template: template || undefined,
+            context: context || undefined,
           });
 
           return {
