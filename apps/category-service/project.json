@@ -43,7 +43,12 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/category-service/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/category-service/src/app/**/*.ts",
+          "apps/category-service/src/environments/**/*.ts",
+          "apps/category-service/src/modules/**/*.ts",
+          "apps/category-service/src/main.ts"
+        ]
       }
     },
     "test": {

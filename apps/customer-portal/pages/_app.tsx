@@ -1,4 +1,3 @@
-import { FC, PropsWithChildren } from 'react'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import DefaultLayout from 'Layouts/default'
@@ -19,8 +18,6 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-const AppContainer: FC<PropsWithChildren<any>> = ({ children }) => children
-
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => (
     <DefaultLayout {...pageProps}>
@@ -32,9 +29,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <ChakraProvider theme={theme}>
       <ApolloProvider client={GraphQlClient}>
         <ReduxProvider store={ReduxStore}>
-          <AppContainer>
-            {getLayout(<Component {...pageProps} />)}
-          </AppContainer>
+          {getLayout(<Component {...pageProps} />)}
         </ReduxProvider>
       </ApolloProvider>
     </ChakraProvider>

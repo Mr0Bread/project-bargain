@@ -12,8 +12,6 @@ import {
 import { FaChevronRight } from 'react-icons/fa'
 import Link from 'next/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { gql } from '@apollo/client'
-import { client } from 'src/graphql/client'
 
 const Home: NextPage<{
   categories: {
