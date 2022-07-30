@@ -26,19 +26,6 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
   view,
   categoryList,
 }) => {
-  const categories = [
-    {
-      title: 'Mercedes',
-      href: '/vehicles/light-vehicles/mercedes',
-      count: 543,
-    },
-    {
-      title: 'BMW',
-      href: '/vehicles/light-vehicles/bmw',
-      count: 1443,
-    },
-  ]
-
   if (view === 'category_list' && categoryList) {
     return (
       <CategoryList
@@ -122,7 +109,7 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
   )
 }
 
-export const getStaticProps: GetStaticProps<any, { slug: string[] }> = async (
+export const getStaticProps: GetStaticProps<unknown, { slug: string[] }> = async (
   { params },
 ) => {
   if (!params) {

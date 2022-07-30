@@ -77,7 +77,9 @@ const CategoryList: FC<CategoryListProps> = ({
         {
           categoryList
             .map(({ fullHref: href, Title: title }) => (
-              <WrapItem>
+              <WrapItem
+                key={href}
+              >
                 <Link
                   passHref
                   href={href}
