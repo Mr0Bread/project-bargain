@@ -25,7 +25,7 @@ export class TrpcModule implements NestModule {
     this.trpcRouter = trpcRouter;
   }
 
-  configure(consumer: MiddlewareConsumer): any {
+  configure(consumer: MiddlewareConsumer): void {
     const {
       trpcPath,
       createContext,
