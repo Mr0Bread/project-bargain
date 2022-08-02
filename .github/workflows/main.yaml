@@ -24,6 +24,8 @@
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
         - uses: actions/setup-node@v3
           with:
             node-version: lts/gallium
@@ -31,4 +33,4 @@
         - name: Install dependencies
           run: yarn install
         - name: Building affected apps
-          run: yarn nx affected --target=build
+          run: yarn nx affected --target=build --base=origin/main
