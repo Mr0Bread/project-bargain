@@ -192,37 +192,8 @@ export const getStaticProps: GetStaticProps<unknown, { slug: string[] }> = async
 }
 
 export const getStaticPaths: GetStaticPaths<{ slug: string[] }> = async () => {
-  const query = gql`
-        query Query {
-            availableCategories {
-                id
-                fullHref
-                view
-            }
-        }
-    `
-
-  const {
-    data: {
-      availableCategories: categories,
-    },
-  } = await client.query<{
-    availableCategories: {
-      fullHref: string;
-      view: string;
-      id: string;
-    }[]
-  }>({
-    query,
-    fetchPolicy: 'network-only',
-  })
-
-  const paths = categories.map(({ fullHref }) => ({
-    params: { slug: fullHref.split('/') },
-  }))
-
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   }
 }
