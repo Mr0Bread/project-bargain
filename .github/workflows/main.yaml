@@ -18,7 +18,7 @@
         - name: Install dependencies
           run: yarn install
         - name: Running linter on affected apps
-          run: yarn nx affected --target=lint
+          run: yarn nx affected --target=lint --base=origin/main
     build:
       name: Building job
       runs-on: ubuntu-latest
