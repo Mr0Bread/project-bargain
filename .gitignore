@@ -43,3 +43,4 @@ certs
 
 # Service specific
 /apps/*/src/prisma/generated
+/apps/*/src/graphql.ts
