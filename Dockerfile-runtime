@@ -1,0 +1,7 @@
+FROM node:lts-gallium as bargain-runtime
+
+WORKDIR /usr/app
+
+COPY ./package.json ./yarn.lock ./nx.json ./tsconfig.base.json ./next-i18next.config.js ./
+
+RUN yarn install --production=true

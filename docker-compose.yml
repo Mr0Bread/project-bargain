@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:1.23.1-alpine
+    ports:
+      - "${NGINX_PORT}:80"
+    volumes:
+      - ./docker/nginx/templates:/etc/nginx/templates
+    env_file:
+      - .env
+    networks:
+      - bargain
+  postgres:
+    image: postgres:14.5
+    expose:
+      - ${DB_PORT}
+#    Optional: Uncomment these lines to use a local volume
+#    volumes:
+#      - <YOUR PATH TO POSTGRESQL DATA>:/var/lib/postgresql/data
+    networks:
+      - bargain
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+networks:
+  bargain:
+    external: true

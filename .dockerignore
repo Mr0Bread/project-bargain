@@ -1,0 +1,12 @@
+node_modules
+.github
+.husky
+.swc
+.vscode
+certs
+dist
+tools
+.editorconfig
+.gitignore
+Bargain.yaml
+README.md

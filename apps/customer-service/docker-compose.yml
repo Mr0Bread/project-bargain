@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  customer-service:
+    image: bargain-dev
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    networks:
+      - bargain
+    volumes:
+      - ./:/usr/app/apps/customer-service
+    command: yarn nx run customer-service:serve
+
+networks:
+  bargain:
+    external: true

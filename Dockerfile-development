@@ -1,0 +1,5 @@
+FROM node:lts-gallium
+
+COPY --from=bargain-build /usr/app /usr/app
+
+WORKDIR /usr/app
