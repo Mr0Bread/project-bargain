@@ -23,6 +23,7 @@
         "tsConfig": "apps/customer-service/tsconfig.app.json",
         "assets": [
           "apps/customer-service/src/assets",
+          "apps/customer-service/src/schema.prisma",
           {
             "input": "apps/customer-service/src/modules",
             "glob": "**/*.graphql",
@@ -47,7 +48,7 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "customer-service:build"
+        "buildTarget": "customer-service:build-app"
       }
     },
     "lint": {
@@ -73,7 +74,12 @@
     "generate-client": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "yarn prisma generate --schema=./apps/customer-service/schema.prisma"
+        "commands": [
+          {
+            "command": "yarn prisma generate --schema=./apps/customer-service/src/schema.prisma",
+            "forwardAllArgs": false
+          }
+        ]
       }
     },
     "generate-typings": {
@@ -85,7 +91,7 @@
     "migrate-dev": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "yarn prisma migrate dev --schema=./apps/customer-service/schema.prisma"
+        "command": "yarn prisma migrate dev --schema=./apps/customer-service/src/schema.prisma"
       }
     }
   },

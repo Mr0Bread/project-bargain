@@ -12,7 +12,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
       server: {
         cors: {
           // Limiting the origins to FE and Apollo Studio
-          origin: "*",
+          origin: ['https://studio.apollographql.com', 'https://project-bargain.test'],
           // Allow cookies to be sent
           credentials: true,
         },

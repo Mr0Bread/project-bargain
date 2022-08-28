@@ -13,13 +13,17 @@ import { AppModule } from './app/app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 4000;
+  const host = process.env.HOST || 'localhost';
 
-  app.use(helmet());
+  app.use(helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false
+  }));
   app.use(cookieParser());
 
-  await app.listen(port);
+  await app.listen(port, host);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}`
+    `🚀 Application is running on: http://${host}:${port}`
   );
 }
 

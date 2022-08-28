@@ -1,0 +1,12 @@
+services:
+  - gateway
+  - customer-service
+  - customer-portal
+
+base-services:
+  nginx:
+    launch:
+      type: 'after-all'
+  postgres:
+    launch:
+      type: 'before-all'
