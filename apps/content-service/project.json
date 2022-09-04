@@ -4,6 +4,16 @@
   "projectType": "application",
   "targets": {
     "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "yarn nx run content-service:generate-client",
+          "yarn nx run content-service:build-app"
+        ],
+        "parallel": false
+      }
+    },
+    "build-app": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
