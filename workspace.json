@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "category-service": "apps/category-service",
+    "content-service": "apps/content-service",
     "customer-portal": "apps/customer-portal",
     "customer-portal-e2e": "apps/customer-portal-e2e",
     "customer-service": "apps/customer-service",

@@ -1,6 +1,7 @@
 services:
   - gateway
   - customer-service
+  - content-service
   - customer-portal
 
 base-services:

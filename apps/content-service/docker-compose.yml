@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  content-service:
+    image: bargain-dev
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    networks:
+      - bargain
+    volumes:
+      - ./:/usr/app/apps/content-service
+    command: yarn nx run content-service:serve
+
+networks:
+  bargain:
+    external: true

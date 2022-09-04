@@ -262,24 +262,24 @@ services
       : servicesConfig
 
     if (base) {
+      const commandMap = [
+        {
+          title: 'Building base image for service building',
+          commandToRun: 'docker build . -f Dockerfile -t bargain-build'
+        },
+        {
+          title: 'Building base image for service running in production',
+          commandToRun: 'docker build . -f Dockerfile-runtime -t bargain-runtime'
+        },
+        {
+          title: 'Building base image for service running in development',
+          commandToRun: 'docker build . -f Dockerfile-development -t bargain-dev'
+        },
+      ];
+
       tasks.push({
         title: 'Building base images',
         task: async (_, task) => {
-          const commandMap = [
-            {
-              title: 'Building base image for service building',
-              commandToRun: 'docker build . -f Dockerfile -t bargain-build'
-            },
-            {
-              title: 'Building base image for service running in production',
-              commandToRun: 'docker build . -f Dockerfile-runtime -t bargain-runtime'
-            },
-            {
-              title: 'Building base image for service running in development',
-              commandToRun: 'docker build . -f Dockerfile-development -t bargain-dev'
-            },
-          ];
-
           for (const { commandToRun, title } of commandMap) {
             task.title = title
             await command(commandToRun)

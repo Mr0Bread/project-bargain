@@ -1,0 +1,101 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/content-service/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "yarn nx run content-service:generate-client",
+          "yarn nx run content-service:build-app"
+        ],
+        "parallel": false
+      }
+    },
+    "build-app": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/content-service",
+        "main": "apps/content-service/src/main.ts",
+        "tsConfig": "apps/content-service/tsconfig.app.json",
+        "assets": [
+          "apps/content-service/src/assets",
+          {
+            "input": "apps/content-service/src/modules",
+            "glob": "**/*.graphql",
+            "output": "/"
+          },
+          {
+            "input": "apps/content-service",
+            "glob": "schema.prisma",
+            "output": "/"
+          },
+          {
+            "input": "apps/content-service/src/prisma/generated",
+            "glob": "libquery_engine-linux-arm64-openssl-1.1.x.so.node",
+            "output": "/"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/content-service/src/environments/environment.ts",
+              "with": "apps/content-service/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "content-service:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "content-service:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/content-service/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/content-service"],
+      "options": {
+        "jestConfig": "apps/content-service/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "generate-client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "yarn prisma generate --schema=./apps/content-service/schema.prisma",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "migrate-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn prisma migrate dev --schema=./apps/content-service/schema.prisma"
+      }
+    }
+  },
+  "tags": []
+}
