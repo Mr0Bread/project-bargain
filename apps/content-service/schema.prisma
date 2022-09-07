@@ -11,4 +11,55 @@ generator client {
 
 model Application {
   id       Int      @id @default(autoincrement())
+  customerId Int
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int
+  applicationEntityStrings ApplicationEntityString[]
+}
+
+model Category {
+  id       Int      @id @default(autoincrement())
+  name     String
+  applications Application[]
+  attributes CategoriesOnAttributes[]
+}
+
+model ApplicationAttribute {
+  id      Int      @id @default(autoincrement())
+  code   String
+  categories CategoriesOnAttributes[]
+}
+
+model CategoriesOnAttributes {
+  categoryId Int
+  attributeId Int
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  attribute ApplicationAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+
+  @@id([categoryId, attributeId])
+}
+
+model EavEntity {
+  id      Int      @id @default(autoincrement())
+  code    String
+  attributes EavAttribute[]
+}
+
+model EavAttribute {
+  id      Int      @unique @default(autoincrement())
+  code    String
+  EavEntity EavEntity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  entityId Int
+  applicationEntityStrings ApplicationEntityString[]
+
+  @@id([id, entityId, code])
+}
+
+model ApplicationEntityString {
+  id     Int      @unique @default(autoincrement())
+  value   String
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId Int
+  attribute EavAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  attributeId Int
 }
