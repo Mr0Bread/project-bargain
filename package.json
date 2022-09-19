@@ -71,7 +71,7 @@
     "@apollo/federation": "0.36.1",
     "@apollo/gateway": "2.0.5",
     "@apollo/subgraph": "2.0.5",
-    "@chakra-ui/react": "2.2.4",
+    "@chakra-ui/react": "2.3.4",
     "@emotion/react": "11",
     "@emotion/styled": "11",
     "@nestjs/apollo": "10.0.19",
